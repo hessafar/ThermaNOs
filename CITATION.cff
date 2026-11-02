@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use ThermaNO, please cite the software and the paper below."
+title: "ThermaNO: Thermal Neural Operators for Laser Powder Bed Fusion"
+version: 1.0.0
+authors:
+  - family-names: Safari
+    given-names: Hesam
+repository-code: "https://github.com/hessafar/ThermaNO"
+keywords: [scientific machine learning, DeepONet, physics-informed neural networks, heat transfer, additive manufacturing]
+preferred-citation:
+  type: article
+  title: "Physics-Informed Surrogates for Temperature Prediction of Multi-Tracks in Laser Powder Bed Fusion"
+  authors:
+    - family-names: Safari
+      given-names: Hesam
+    - family-names: Wessels
+      given-names: Henning
+  year: 2025
+  identifiers:
+    - type: other
+      value: "arXiv:2502.01820"

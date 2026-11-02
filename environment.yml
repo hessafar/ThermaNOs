@@ -1,0 +1,16 @@
+# Environment the test suite was last run with. CPU is enough for tests;
+# on GPU nodes the same torch version from PyPI ships with its CUDA libraries.
+name: thermano
+channels: [conda-forge]
+dependencies:
+  - python=3.13
+  - pip
+  - pip:
+      - numpy==2.5.3
+      - scipy==1.18.1
+      - h5py==3.16.0
+      - pyyaml==6.0.3
+      - torch==2.14.1
+      - pytest==9.1.1
+      - ruff
+      - -e .

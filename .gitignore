@@ -1,3 +1,10 @@
 __pycache__/
 zlogs/
 results/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+*.sif
+logs/
+data/reference/

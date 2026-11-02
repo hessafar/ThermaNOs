@@ -1,0 +1,24 @@
+Bootstrap: docker
+From: python:3.13-slim
+
+%files
+    . /opt/thermano
+
+%post
+    apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
+    pip install --no-cache-dir torch==2.14.1 numpy==2.5.3 scipy==1.18.1 h5py==3.16.0 pyyaml==6.0.3
+    pip install --no-cache-dir -e /opt/thermano
+    cd /opt/thermano && git rev-parse HEAD > /opt/thermano/BUILD_COMMIT 2>/dev/null || true
+
+%environment
+    export CUBLAS_WORKSPACE_CONFIG=:4096:8
+
+%runscript
+    exec thermano "$@"
+
+%test
+    thermano info
+
+%labels
+    Author Hesam Safari
+    Description ThermaNO - thermal neural operators for LPBF

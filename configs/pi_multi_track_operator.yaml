@@ -1,0 +1,30 @@
+# Paper Sec. 3.3: one PI-En-DeepONet over all six 3-track scenarios (shown to degrade; kept for comparison).
+name: pi_multi_track_operator
+mode: physics
+seed: 4000
+dtype: float32
+output_dir: results
+
+domain: {length: 2.0, width: 1.5, height: 1.0, temperature_scale: 1800.0, initial_temperature: 300.0}
+laser:
+  power: 150.0           # eta * P [W]
+  radius: 0.45           # [mm]
+  penetration_depth: 0.5
+  speed: 100.0           # [mm/s] = 0.1 m/s
+  track_length: 1.0
+  hatch_spacing: 0.225   # 0.25 x laser diameter
+  start: [0.5, 0.5]
+  n_tracks: 3
+  scenarios: []
+  sensors_per_track: 20
+material: {type: hastelloy_x, density: 8351.91}
+model:
+  type: en_deeponet
+  branch_layers: [64, 64]
+  trunk_layers: [64, 64, 64, 64, 64]
+  latent_dim: 64
+  activation: sin
+sampling: {num_time_slices: 50, points_per_slice: 400, initial_points: 4000,
+           boundary_points_per_face: 2000, cluster_fraction: 0.5, cluster_center: 1.0}
+training: {strategy: operator, optimizer: lbfgs, learning_rate: 1.0, max_epochs: 1000, tolerance: 1.0e-6}
+evaluation: {reference: fd, grid: [41, 31, 21], melt_temperature: 1658.0}
